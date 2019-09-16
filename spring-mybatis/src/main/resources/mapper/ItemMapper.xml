@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ItemMapper" >
+	<select id="selectAll" resultType="pojo.Item">
+			select * from item
+	</select>
+	
+	<select id="selectById" parameterType="int" resultType="pojo.Item">
+		select * from item where id=#{id}
+	</select>
+	
+	<update id="updateItem" parameterType="pojo.Item">
+		update item
+		<set>
+			<if test="name!=null and name!=''">
+				name=#{name},
+			</if>
+			<if test="price!=null and price!=''">
+				price=#{price},
+			</if>
+			<if test="detail!=null and detail!=''">
+				detail=#{detail},
+			</if>
+			<if test="createtime!=null">
+				createtime=#{createtime},
+			</if>
+			<if test="pic!=null and pic!=''">
+				pic=#{pic},
+			</if>
+		</set>
+		where id=#{id}
+		
+	</update>
+  </mapper>
